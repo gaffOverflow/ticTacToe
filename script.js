@@ -14,13 +14,13 @@ const winConditions = [
 
 let option = ["", "", "", "", "", "", "", "", ""];
 
-let currentPlayer = "x";
+let currentPlayer = "X";
 let running = false;
 
-initializeGame()
+initializeGame();
 
 function initializeGame() {
-  cells.forEach(cell => cell.addEventListener("click", cellClicked));
+  cells.forEach((cell) => cell.addEventListener("click", cellClicked));
   restartBtn.addEventListener("click", restartGame);
   statusText.textContent = `${currentPlayer}'s turns`;
   running = true;
@@ -31,7 +31,7 @@ function cellClicked() {
     return;
   }
   updateCell(this, cellIndex);
-  changePlayer()
+  changePlayer();
   checkWinner();
 }
 function updateCell(cell, index) {
@@ -39,10 +39,35 @@ function updateCell(cell, index) {
   cell.textContent = currentPlayer;
 }
 function changePlayer() {
-  currentPlayer = (currentPlayer == "x") ? "o" : "x"
-  statusText.textContent = `${currentPlayer}`
+  currentPlayer = currentPlayer == "X" ? "O" : "X";
+  statusText.textContent = `${currentPlayer}'s Turns`;
 }
+
 function checkWinner() {
-  
+  let roundWon = false;
+  for (let i = 0; i < winConditions.length; i++) {
+    const condition = winConditions[i];
+    const cellA = option[condition[0]];
+    const cellB = option[condition[1]];
+    const cellC = option[condition[2]];
+
+    if (cellA == "" || cellB == "" || cellC == "") {
+      continue;
+    }
+    if (cellA == cellB && cellB == cellC) {
+      roundWon = true;
+      break;
+    }
+  }
+
+  if (roundWon) {
+    statusText.textContent = `${currentPlayer} Wins!`;
+    running = false;
+  } else if (!option.includes("")) {
+    statusText.textContent = `Draw!`;
+    running = false;
+  } else {
+    changePlayer();
+  }
 }
 function restartGame() {}
