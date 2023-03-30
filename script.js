@@ -43,31 +43,31 @@ function changePlayer() {
   statusText.textContent = `${currentPlayer}'s Turns`;
 }
 
-function checkWinner() {
-  let roundWon = false;
-  for (let i = 0; i < winConditions.length; i++) {
-    const condition = winConditions[i];
-    const cellA = option[condition[0]];
-    const cellB = option[condition[1]];
-    const cellC = option[condition[2]];
+// function checkWinner() {
+//   let roundWon = false;
+//   for (let i = 0; i < winConditions.length; i++) {
+//     const condition = winConditions[i];
+//     const cellA = option[condition[0]];
+//     const cellB = option[condition[1]];
+//     const cellC = option[condition[2]];
 
-    if (cellA == "" || cellB == "" || cellC == "") {
-      continue;
-    }
-    if (cellA == cellB && cellB == cellC) {
-      roundWon = true;
-      break;
-    }
-  }
+//     if (cellA == "" || cellB == "" || cellC == "") {
+//       continue;
+//     }
+//     if (cellA == cellB && cellB == cellC) {
+//       roundWon = true;
+//       break;
+//     }
+//   }
 
-  if (roundWon) {
-    statusText.textContent = `${currentPlayer} Wins!`;
-    running = false;
-  } else if (!option.includes("")) {
-    statusText.textContent = `Draw!`;
-    running = false;
-  } else {
-    changePlayer();
-  }
-}
+//   if (roundWon) {
+//     statusText.textContent = `${currentPlayer} Wins!`;
+//     running = false;
+//   } else if (!option.includes("")) {
+//     statusText.textContent = `Draw!`;
+//     running = false;
+//   } else {
+//     changePlayer();
+//   }
+// }
 function restartGame() {}
